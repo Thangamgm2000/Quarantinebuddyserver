@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask,request
 app = Flask(__name__)
 
 user_details = [{"id":"1","name":"Svijay","score":"130","city":"Chennai","imgURL":"https:\/\/demonuts.com\/Demonuts\/SampleImages\/roger.jpg"},
@@ -9,6 +9,7 @@ user_details = [{"id":"1","name":"Svijay","score":"130","city":"Chennai","imgURL
                   {"id":"6","name":"darklord","score":"120","city":"Hyderabad","imgURL":"https:\/\/demonuts.com\/Demonuts\/SampleImages\/woz.jpg"},
                   {"id":"7","name":"goldminer","score":"71","city":"Mangalore","imgURL":"https:\/\/demonuts.com\/Demonuts\/SampleImages\/bou.png"},
                   {"id":"8","name":"pythonFlask","score":"20","city":"Chennai","imgURL":"https:\/\/demonuts.com\/Demonuts\/SampleImages\/iva.jpg"}]
+
 
 @app.route('/')
 def index():
@@ -21,6 +22,13 @@ def about():
     return {"status":"true","message":"Data fetched successfully!",
           "data":sorted_scores}
 
+
+@app.route('/getSensorValues',methods=['POST'])
+def getsensorvalues():
+    if request.method == 'POST':
+        print(request.form['userid'])
+        print(request.form['sensorvalues'])
+        return 'received'
 
 if __name__ == '__main__':
     app.run(port=4000)
