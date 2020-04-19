@@ -1,4 +1,5 @@
 from flask import Flask,request
+import json
 app = Flask(__name__)
 
 user_details = [{"id":"1","name":"Svijay","score":"130","city":"Chennai","imgURL":"https:\/\/demonuts.com\/Demonuts\/SampleImages\/roger.jpg"},
@@ -27,8 +28,12 @@ def about():
 def getsensorvalues():
     if request.method == 'POST':
         print(request.form['userid'])
-        print(request.form['sensorvalues'])
+        print("sensor values:")
+        print(json.loads(request.form['sensorvalues']))
+        print("gps values:")
+        print( json.loads(request.form['gpsvalues']))
         return 'received'
+
 
 if __name__ == '__main__':
     app.run(port=4000)
