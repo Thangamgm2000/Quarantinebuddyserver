@@ -35,5 +35,12 @@ def getsensorvalues():
         return 'received'
 
 
+@app.route('/getUserResponse',methods=['POST'])
+def getUserResponse():
+    if request.method == 'POST':
+        print(request.form['userResponse'])
+        return 'received'
+
+
 if __name__ == '__main__':
     app.run(port=4000)
